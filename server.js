@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const routes = require('./routes/postRoutes.js');
 require('dotenv').config();
 
 // mongoose config
@@ -9,9 +8,14 @@ mongoose.connect(process.env.MONGO_URI);
 mongoose.connection.on('error', err => {
   console.error(`Mongoose failed :( → ${err.message}`);
 });
+require('./models/User');
+require('./models/Post');
 
 // express config
 const app = express();
+const routes = require('./routes/postRoutes.js');
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use('/', routes);
 
 const PORT = process.env.PORT || 5000;
