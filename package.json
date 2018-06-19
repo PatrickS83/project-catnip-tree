@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/PatrickS83/project-catnip-tree#readme",
   "dependencies": {
+    "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "mongoose": "^5.1.5"
   }
