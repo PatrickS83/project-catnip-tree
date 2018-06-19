@@ -12,8 +12,9 @@ const postSchema = new Schema({
     trim: true,
     required: 'Please enter some content in your post!'
   },
-  likes: Number,
-  dislikes: Number
+  likes: { type: Number, default: 0 },
+  dislikes: { type: Number, default: 0 },
+  created: { type: Date, required: 'Creation Date is required' }
 });
 
 mongoose.model('posts', postSchema);
