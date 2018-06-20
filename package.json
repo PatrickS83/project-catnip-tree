@@ -4,13 +4,15 @@
   "description": "Little messageboard",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "node server.js",
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PatrickS83/project-catnip-tree.git"
   },
-  "author": "",
+  "author": "Patrick Schülke",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/PatrickS83/project-catnip-tree/issues"
@@ -20,6 +22,7 @@
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
     "mongoose": "^5.1.5",
+    "nodemon": "^1.17.5",
     "passport": "^0.4.0",
     "passport-google-oauth20": "^1.0.0"
   }
