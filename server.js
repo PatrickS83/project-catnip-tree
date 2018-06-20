@@ -8,7 +8,7 @@ require('dotenv').config();
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.MONGO_URI);
 mongoose.connection.on('error', err => {
-  console.error(`Mongoose failed :( → ${err.message}`);
+  console.error(`Mongoose failed to connect :( → ${err.message}`);
 });
 require('./models/User');
 require('./models/Post');
@@ -33,8 +33,10 @@ passport.use(
   )
 );
 
+// Routes
 app.use('/auth', authRoutes);
 app.use('/api/posts', postRoutes);
 
+// Server init
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server listening to port ${PORT}`));
