@@ -4,10 +4,10 @@ const router = express.Router();
 
 const Post = mongoose.model('posts');
 
-router.get('/', (req, res) => res.send('homeroute works'));
-router.get('/api/posts', (req, res) => res.send('subrouting works'));
+// /api/posts routes
+router.get('/', (req, res) => res.send('subrouting works'));
 
-router.post('/api/posts', (req, res) => {
+router.post('/', (req, res) => {
   const { subject, content } = req.body;
   const post = new Post({
     subject,
