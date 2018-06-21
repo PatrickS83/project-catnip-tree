@@ -9,10 +9,10 @@ module.exports = passport => {
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
         callbackURL: '/auth/google/callback'
       },
-      (accesToken, refeshToken, profile, done) => {
-        console.log('AccessToken:', accesToken);
-        console.log('AccessToken:', refeshToken);
-        console.log('AccessToken:', profile);
+      (accessToken, refeshToken, profile, done) => {
+        console.log('AccessToken:', accessToken);
+        console.log('Refresh Token:', refeshToken);
+        console.log('Profile:', profile);
       }
     )
   );
