@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
-
 require('dotenv').config();
 
 // mongoose config
@@ -20,7 +19,7 @@ const authRoutes = require('./routes/authRoutes.js');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// passport middleware
+// passport config
 require('./services/passport')(passport);
 
 // Routes
