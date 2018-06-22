@@ -17,4 +17,4 @@ const postSchema = new Schema({
   created: { type: Date, required: 'Creation Date is required' }
 });
 
-module.exports = mongoose.model('posts', postSchema);
+mongoose.model('posts', postSchema);
