@@ -3,8 +3,8 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema({
   googleId: String,
-  liked: [String],
-  disliked: [String]
+  liked: { type: [String], default: [] },
+  disliked: { type: [String], default: [] }
 });
 
 mongoose.model('users', userSchema);
