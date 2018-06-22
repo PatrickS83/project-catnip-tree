@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const cookieSession = require('cookie-session');
+
 require('dotenv').config();
 
 // mongoose config
@@ -20,7 +22,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // passport config
-require('./services/passport')(passport);
+require('./services/passport');
+app.use(
+  cookieSession({
+    maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+    keys: [process.env.COOKIE_KEY]
+  })
+);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // Routes
 app.use('/auth', authRoutes);
