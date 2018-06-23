@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const { Schema } = mongoose;
 
 const postSchema = new Schema({
+  creator: {
+    type: Schema.Types.ObjectId,
+    ref: 'users'
+  },
   subject: {
     type: String,
     trim: true,
@@ -14,7 +18,7 @@ const postSchema = new Schema({
   },
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
-  created: { type: Date, required: 'Creation Date is required' }
+  created: { type: Date, default: Date.now }
 });
 
 mongoose.model('posts', postSchema);
