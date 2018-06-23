@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const router = express.Router();
+const { addLike, addDislike, removeLike, removeDislike } = require('../helpers/like-dislike');
 
 const Post = mongoose.model('posts');
 const User = mongoose.model('users');
@@ -30,14 +31,43 @@ router.post('/', (req, res) => {
 // @desc    Like a post
 // @access  Protected
 router.post('/like/:id', async (req, res) => {
-  const user = await User.findById('5b2e3f6e5d109200dc65efe6');
+  const user = await User.findById('5b2e3f6e5d109200dc65efe6'); //temp hardcode for testing
   const post = await Post.findById(req.params.id);
   const alreadyLiked = user.liked.find(postID => postID === post.id);
-  if (alreadyLiked) return res.status(400).send('User already liked this post');
-  post.likes += 1;
-  user.liked.unshift(post.id);
-  // post.save();
-  // user.save();
+  const alreadyDisliked = user.disliked.find(postID => postID === post.id);
+
+  if (alreadyLiked) {
+    removeLike(user, post);
+  } else if (alreadyDisliked) {
+    removeDislike(user, post);
+    addLike(user, post);
+  } else {
+    addLike(user, post);
+  }
+
+  Promise.all([post.save(), user.save()])
+    .then(result => res.json({ result }))
+    .catch(err => console.log(err));
+});
+
+// @route   POST api/posts/dislike/:id
+// @desc    Dislike a post
+// @access  Protected
+router.post('/dislike/:id', async (req, res) => {
+  const user = await User.findById('5b2e3f6e5d109200dc65efe6'); //temp hardcode for testing
+  const post = await Post.findById(req.params.id);
+  const alreadyLiked = user.liked.find(postID => postID === post.id);
+  const alreadyDisliked = user.disliked.find(postID => postID === post.id);
+
+  if (alreadyDisliked) {
+    removeDislike(user, post);
+  } else if (alreadyLiked) {
+    removeLike(user, post);
+    addDislike(user, post);
+  } else {
+    addDislike(user, post);
+  }
+
   Promise.all([post.save(), user.save()])
     .then(result => res.json({ result }))
     .catch(err => console.log(err));
