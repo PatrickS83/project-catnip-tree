@@ -31,7 +31,7 @@ router.post('/', (req, res) => {
 // @desc    Like a post
 // @access  Protected
 router.post('/like/:id', async (req, res) => {
-  const user = await User.findById('5b2e3f6e5d109200dc65efe6'); //temp hardcode for testing
+  const user = await User.findById(req.user.id);
   const post = await Post.findById(req.params.id);
   const alreadyLiked = user.liked.find(postID => postID === post.id);
   const alreadyDisliked = user.disliked.find(postID => postID === post.id);
@@ -54,7 +54,7 @@ router.post('/like/:id', async (req, res) => {
 // @desc    Dislike a post
 // @access  Protected
 router.post('/dislike/:id', async (req, res) => {
-  const user = await User.findById('5b2e3f6e5d109200dc65efe6'); //temp hardcode for testing
+  const user = await User.findById(req.user.id);
   const post = await Post.findById(req.params.id);
   const alreadyLiked = user.liked.find(postID => postID === post.id);
   const alreadyDisliked = user.disliked.find(postID => postID === post.id);
