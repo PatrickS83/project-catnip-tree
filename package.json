@@ -8,8 +8,9 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "node server.js",
-    "dev": "nodemon server.js"
+    "server": "nodemon server.js",
+    "client": "npm run start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   },
   "homepage": "https://github.com/PatrickS83/project-catnip-tree#readme",
   "dependencies": {
+    "concurrently": "^3.6.0",
     "cookie-session": "^2.0.0-beta.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
