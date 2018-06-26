@@ -16,6 +16,7 @@
   },
   "rules": {
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "node/no-unsupported-features": 0
+    "node/no-unsupported-features": 0,
+    "linebreak-style": 0
   }
 }
