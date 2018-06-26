@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import * as authActions from '../actions/authActions';
 
 class App extends Component {
+  static propTypes = {
+    fetchUser: PropTypes.func.isRequired
+  };
+
   componentDidMount() {
     const { fetchUser } = this.props;
     fetchUser();
