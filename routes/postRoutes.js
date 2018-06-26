@@ -11,6 +11,30 @@ const User = mongoose.model('users');
 // @access  Public
 router.get('/test', (req, res) => res.send('postroute works'));
 
+// @route   GET api/posts/
+// @desc    Gets all Posts
+// @access  Public
+router.get('/', async (req, res) => {
+  try {
+    const posts = await Post.find().populate('creator');
+    res.status(200).json(posts);
+  } catch (err) {
+    res.status(404).json(err);
+  }
+});
+
+// @route   GET api/posts/:id
+// @desc    Gets one post
+// @access  Public
+router.get('/:id', async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id).populate('creator');
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(404).json(err);
+  }
+});
+
 // @route   POST api/posts/
 // @desc    Creates a post
 // @access  Protected
@@ -24,7 +48,7 @@ router.post('/', (req, res) => {
   })
     .save()
     .then(post => res.send(post))
-    .catch(err => res.status(422).send(err));
+    .catch(err => res.status(400).send(err));
 });
 
 // @route   POST api/posts/like/:id
@@ -47,7 +71,7 @@ router.post('/like/:id', async (req, res) => {
 
   Promise.all([post.save(), user.save()])
     .then(result => res.json({ result }))
-    .catch(err => console.log(err));
+    .catch(err => res.status(400).send(err));
 });
 
 // @route   POST api/posts/dislike/:id
@@ -70,7 +94,7 @@ router.post('/dislike/:id', async (req, res) => {
 
   Promise.all([post.save(), user.save()])
     .then(result => res.json({ result }))
-    .catch(err => console.log(err));
+    .catch(err => res.status(400).send(err));
 });
 
 module.exports = router;
