@@ -26,7 +26,7 @@ passport.use(
       if (user) return done(null, user);
 
       // no existing user --> create new user
-      const newUser = await new User({ googleId: profile.id }).save();
+      const newUser = await new User({ googleId: profile.id, nick: profile.displayName }).save();
       done(null, newUser);
     }
   )
