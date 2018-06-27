@@ -5,13 +5,16 @@ import PropTypes from 'prop-types';
 
 class Header extends Component {
   static propTypes = {
-    auth: PropTypes.shape({
-      liked: PropTypes.array.isRequired,
-      disliked: PropTypes.array.isRequired,
-      _id: PropTypes.string.isRequired,
-      googleId: PropTypes.string.isRequired,
-      joined: PropTypes.string.isRequired
-    })
+    auth: PropTypes.oneOfType([
+      PropTypes.bool,
+      PropTypes.shape({
+        liked: PropTypes.array.isRequired,
+        disliked: PropTypes.array.isRequired,
+        _id: PropTypes.string.isRequired,
+        googleId: PropTypes.string.isRequired,
+        joined: PropTypes.string.isRequired
+      })
+    ])
   };
 
   static defaultProps = { auth: null };
@@ -38,7 +41,7 @@ class Header extends Component {
   render() {
     const { auth } = this.props;
     return (
-      <Menu stackable inverted>
+      <Menu stackable inverted style={{ maxHeight: 30 }}>
         <Container>
           <Menu.Item as="a" active>
             Today I Learned
