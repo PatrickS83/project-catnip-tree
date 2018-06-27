@@ -14,7 +14,9 @@ router.get(
 
 // @route   GET auth/google/callback
 // @desc    Callback URL from google o-auth process
-router.get('/google/callback', passport.authenticate('google'));
+router.get('/google/callback', passport.authenticate('google'), (req, res) => {
+  res.redirect('/');
+});
 
 // @route   GET auth/current_user
 // @desc    Shows user information
