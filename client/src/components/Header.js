@@ -41,7 +41,7 @@ class Header extends Component {
   render() {
     const { auth } = this.props;
     return (
-      <Menu stackable inverted style={{ maxHeight: 30 }}>
+      <Menu fluid inverted>
         <Container>
           <Menu.Item as="a" active>
             Today I Learned
