@@ -29,7 +29,7 @@ router.get('/current_user', (req, res) => {
 // @desc    Logs user out
 router.get('/logout', (req, res) => {
   req.logout();
-  res.send('Successfully logged out!');
+  res.redirect('/');
 });
 
 module.exports = router;
