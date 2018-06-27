@@ -1,23 +1,54 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Button, Container, Menu } from 'semantic-ui-react';
+import PropTypes from 'prop-types';
 
 class Header extends Component {
+  static propTypes = {
+    auth: PropTypes.shape({
+      liked: PropTypes.array.isRequired,
+      disliked: PropTypes.array.isRequired,
+      _id: PropTypes.string.isRequired,
+      googleId: PropTypes.string.isRequired,
+      joined: PropTypes.string.isRequired
+    })
+  };
+
+  static defaultProps = { auth: null };
+
+  renderAuthButton() {
+    const { auth } = this.props;
+    if (auth) {
+      return (
+        <Button inverted as="a" href="/auth/logout">
+          Log Out
+        </Button>
+      );
+    }
+    if (auth === false) {
+      return (
+        <Button inverted as="a" href="/auth/google">
+          Sign in with Google
+        </Button>
+      );
+    }
+    return null;
+  }
+
   render() {
+    const { auth } = this.props;
     return (
-      <Menu inverted size="large">
+      <Menu stackable inverted>
         <Container>
           <Menu.Item as="a" active>
-            {this.props.auth ? this.props.auth._id : null}
+            Today I Learned
           </Menu.Item>
-          <Menu.Item as="a">Work</Menu.Item>
-          <Menu.Item as="a">Company</Menu.Item>
-          <Menu.Item as="a">Careers</Menu.Item>
-          <Menu.Item position="right">
-            <Button inverted as="a" href="/auth/google">
-              Sign in with Google
-            </Button>
-          </Menu.Item>
+          <Menu.Menu position="right">
+            <Menu.Item>
+              {auth ? <span style={{ marginRight: '10px' }}>{auth._id}</span> : null}
+              {this.renderAuthButton()}
+            </Menu.Item>
+          </Menu.Menu>
         </Container>
       </Menu>
     );
