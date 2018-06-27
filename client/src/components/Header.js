@@ -48,7 +48,7 @@ class Header extends Component {
           </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item>
-              {auth ? <span style={{ marginRight: '10px' }}>{auth._id}</span> : null}
+              {auth && <span style={{ marginRight: 10 }}>{auth.nick}</span>}
               {this.renderAuthButton()}
             </Menu.Item>
           </Menu.Menu>
