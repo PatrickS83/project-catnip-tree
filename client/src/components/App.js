@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as authActions from '../actions/authActions';
 
+import Header from './Header';
+
 class App extends Component {
   static propTypes = {
     fetchUser: PropTypes.func.isRequired
@@ -14,7 +16,12 @@ class App extends Component {
   }
 
   render() {
-    return <div className="App">React App is working correctly!</div>;
+    return (
+      <div className="App">
+        <Header />
+        <h1>Welcome!</h1>
+      </div>
+    );
   }
 }
 
