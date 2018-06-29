@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Button, Container, Menu } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 
@@ -44,7 +45,7 @@ class Header extends Component {
       <Menu fluid inverted>
         <Container>
           <Menu.Item as="a" active>
-            Today I Learned
+            <Link to="/">Today I Learned</Link>
           </Menu.Item>
           <Menu.Menu position="right">
             <Menu.Item>
