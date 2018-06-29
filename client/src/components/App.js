@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as authActions from '../actions/authActions';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 
+import * as authActions from '../actions/authActions';
 import Header from './Header';
+import Landing from './Landing';
 
 class App extends Component {
   static propTypes = {
@@ -17,10 +19,12 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <Header />
-        <h1>Welcome!</h1>
-      </div>
+      <Router>
+        <div>
+          <Header />
+          <Route exact path="/" component={Landing} />
+        </div>
+      </Router>
     );
   }
 }
