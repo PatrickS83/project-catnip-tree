@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Button } from 'semantic-ui-react';
 
 class Landing extends Component {
   render() {
@@ -7,7 +8,7 @@ class Landing extends Component {
       <div>
         <h1>Welcome to the Landing Page</h1>
         <Link to="/posts/createPost">
-          <button>Create a post!</button>
+          <Button content="Create a post!" />
         </Link>
       </div>
     );

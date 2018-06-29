@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Form, Message, Segment, Header, Container } from 'semantic-ui-react';
-import axios from 'axios';
+import * as actions from '../actions/postActions';
 
 class CreatePost extends Component {
   state = {
@@ -28,22 +29,17 @@ class CreatePost extends Component {
   handleSubmit = async () => {
     this.setState({ loading: true });
     const { form } = this.state;
-    const { history } = this.props;
+    const { history, createPost } = this.props;
     const error = this.validate(form);
     if (error) {
       this.setState({ loading: false });
       return;
     }
-
-    try {
-      await axios.post('/api/posts', form);
-      this.setState({ success: true, loading: false });
-      setTimeout(() => {
-        history.push('/');
-      }, 3000);
-    } catch (err) {
-      this.setState({ loading: false, error: true });
-    }
+    createPost(form);
+    this.setState({ success: true, loading: false });
+    setTimeout(() => {
+      history.push('/');
+    }, 3000);
   };
 
   render() {
@@ -90,4 +86,7 @@ class CreatePost extends Component {
   }
 }
 
-export default CreatePost;
+export default connect(
+  null,
+  actions
+)(CreatePost);
