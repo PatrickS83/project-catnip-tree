@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import * as authActions from '../actions/authActions';
-import Header from './Header';
+import Layout from './Layout';
 import Landing from './Landing';
 
 class App extends Component {
@@ -20,10 +20,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
-          <Header />
+        <Layout>
           <Route exact path="/" component={Landing} />
-        </div>
+        </Layout>
       </Router>
     );
   }
