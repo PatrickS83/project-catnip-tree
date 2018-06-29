@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import * as authActions from '../actions/authActions';
 import Layout from './Layout';
 import Landing from './Landing';
+import PrivateRoute from './PrivateRoute';
+import CreatePost from './CreatePost';
 
 class App extends Component {
   static propTypes = {
@@ -22,6 +24,7 @@ class App extends Component {
       <Router>
         <Layout>
           <Route exact path="/" component={Landing} />
+          <PrivateRoute path="/posts/createPost" component={CreatePost} />
         </Layout>
       </Router>
     );
