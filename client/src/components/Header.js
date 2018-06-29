@@ -44,7 +44,7 @@ class Header extends Component {
     return (
       <Menu fluid inverted>
         <Container>
-          <Menu.Item as="a" active>
+          <Menu.Item link active>
             <Link to="/">Today I Learned</Link>
           </Menu.Item>
           <Menu.Menu position="right">
