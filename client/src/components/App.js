@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import * as authActions from '../actions/authActions';
 import Layout from './Layout';
@@ -24,7 +24,9 @@ class App extends Component {
       <Router>
         <Layout>
           <Route exact path="/" component={Landing} />
-          <PrivateRoute path="/posts/createPost" component={CreatePost} />
+          <Switch>
+            <PrivateRoute path="/posts/createPost" component={CreatePost} />
+          </Switch>
         </Layout>
       </Router>
     );
