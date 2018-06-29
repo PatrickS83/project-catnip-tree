@@ -13,8 +13,8 @@ export default function(state = initialState, action) {
       };
     case CREATE_POST:
       return {
-        ...state,
-        posts: [action.payload, ...state.posts]
+        ...state
+        // posts: [action.payload, ...state.posts]
       };
     default:
       return state;
