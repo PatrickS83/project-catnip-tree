@@ -62,12 +62,12 @@ class PostItem extends Component {
           <Item.Meta>by {author}</Item.Meta>
           <Item.Description>{content}</Item.Description>
           <Item.Extra>
-            <Label as="a" onClick={this.handleLike}>
-              <Icon name="thumbs up outline" size="large" color={liked ? 'blue' : 'black'} />
+            <Label as="a" onClick={this.handleLike} style={{ border: '1px solid black' }}>
+              <Icon name="thumbs up outline" color={liked ? 'blue' : 'black'} />
               {likes}
             </Label>
-            <Label as="a" onClick={this.handledisLike}>
-              <Icon name="thumbs down outline" size="large" color={disliked ? 'red' : 'black'} />
+            <Label as="a" onClick={this.handledisLike} style={{ border: '1px solid black' }}>
+              <Icon name="thumbs down outline" color={disliked ? 'red' : 'black'} />
               {dislikes}
             </Label>
           </Item.Extra>

@@ -25,7 +25,7 @@ class Landing extends Component {
       <Container>
         <h1>Welcome to the Landing Page</h1>
         <Link to="/posts/createPost">
-          <Button primary content="Create a post!" size="massive" />
+          <Button content="Create a post!" size="massive" color="orange" />
         </Link>
         <Item.Group divided>
           {posts.length ? (

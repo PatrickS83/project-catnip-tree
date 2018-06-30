@@ -42,7 +42,7 @@ class Header extends Component {
   render() {
     const { auth } = this.props;
     return (
-      <Menu fluid inverted>
+      <Menu fluid inverted color="blue">
         <Container>
           <Menu.Item link active>
             <Link to="/">Today I Learned</Link>

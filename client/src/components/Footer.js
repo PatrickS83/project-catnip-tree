@@ -2,7 +2,7 @@ import React from 'react';
 import { Segment, Container, Grid, Header, List } from 'semantic-ui-react';
 
 const Footer = () => (
-  <Segment inverted vertical style={{ padding: '2em 0em' }}>
+  <Segment inverted vertical style={{ marginTop: '4em', padding: '2em 0em' }} color="blue">
     <Container>
       <Grid divided inverted stackable>
         <Grid.Row>
@@ -24,7 +24,10 @@ const Footer = () => (
             <Header as="h4" inverted>
               Today I Learned
             </Header>
-            <p>Small messageboard prototype</p>
+            <p>
+              Small messageboard learning-project to familiarize myself with authentification,
+              Node.js and React/Redux
+            </p>
           </Grid.Column>
         </Grid.Row>
       </Grid>
