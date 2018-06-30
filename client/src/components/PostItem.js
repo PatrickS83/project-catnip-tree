@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Item, Icon, Label } from 'semantic-ui-react';
 import * as authActions from '../actions/authActions';
+import * as postActions from '../actions/postActions';
 
 class PostItem extends Component {
   static propTypes = {
@@ -14,6 +16,7 @@ class PostItem extends Component {
     dislikes: PropTypes.number.isRequired,
     likePost: PropTypes.func.isRequired,
     dislikePost: PropTypes.func.isRequired,
+    setPostLoading: PropTypes.func.isRequired,
     auth: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.shape({
@@ -50,7 +53,7 @@ class PostItem extends Component {
   };
 
   render() {
-    const { id, author, subject, content, likes, dislikes } = this.props;
+    const { id, author, subject, content, likes, dislikes, setPostLoading } = this.props;
     const { liked, disliked } = this.state;
 
     return (
@@ -58,7 +61,12 @@ class PostItem extends Component {
         <Item.Image size="small" src="./img/image.png" />
 
         <Item.Content>
-          <Item.Header as="a">{subject}</Item.Header>
+          <Item.Header>
+            <Link to={`/viewpost/${id}`} onClick={setPostLoading}>
+              {subject}
+            </Link>
+          </Item.Header>
+
           <Item.Meta>by {author}</Item.Meta>
           <Item.Description>{content}</Item.Description>
           <Item.Extra>
@@ -79,7 +87,12 @@ class PostItem extends Component {
 
 const mapStateToProps = ({ auth }) => ({ auth });
 
+const mapDispatchToProps = {
+  ...authActions,
+  ...postActions
+};
+
 export default connect(
   mapStateToProps,
-  authActions
+  mapDispatchToProps
 )(PostItem);
