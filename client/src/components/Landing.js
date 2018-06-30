@@ -27,7 +27,7 @@ class Landing extends Component {
         <Link to="/posts/createPost">
           <Button primary content="Create a post!" size="massive" />
         </Link>
-        <Item.Group>
+        <Item.Group divided>
           {posts.length ? (
             posts.map(post => (
               <PostItem
