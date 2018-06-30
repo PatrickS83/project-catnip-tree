@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { Item, Icon, Label } from 'semantic-ui-react';
 import * as authActions from '../actions/authActions';
 import * as postActions from '../actions/postActions';
+import placeholderImage from './img/image.png';
 
 class PostItem extends Component {
   static propTypes = {
@@ -58,7 +59,7 @@ class PostItem extends Component {
 
     return (
       <Item id={id}>
-        <Item.Image size="small" src="./img/image.png" />
+        <Item.Image size="small" src={placeholderImage} />
 
         <Item.Content>
           <Item.Header>
