@@ -49,7 +49,7 @@ class CreatePost extends Component {
         <Header as="h1" textAlign="center">
           Create a new Post
         </Header>
-        <Segment inverted raised>
+        <Segment inverted raised color="orange">
           <Form
             inverted
             loading={loading}
@@ -71,14 +71,14 @@ class CreatePost extends Component {
               onChange={this.handleChange}
             />
             <Form.TextArea
-              style={{ height: 200 }}
+              style={{ height: 300 }}
               name="content"
               value={content}
               label="Your Post"
               placeholder="Today I learned ..."
               onChange={this.handleChange}
             />
-            <Form.Button content="Create Post" disabled={success} />
+            <Form.Button content="Create Post" disabled={success} color="blue" size="large" />
           </Form>
         </Segment>
       </Container>
