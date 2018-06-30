@@ -71,7 +71,7 @@ router.post('/like/:id', requireAuth, async (req, res) => {
   }
 
   Promise.all([post.save(), user.save()])
-    .then(result => res.json({ result }))
+    .then(result => res.json(result))
     .catch(err => res.status(400).send(err));
 });
 
@@ -94,7 +94,7 @@ router.post('/dislike/:id', requireAuth, async (req, res) => {
   }
 
   Promise.all([post.save(), user.save()])
-    .then(result => res.json({ result }))
+    .then(result => res.json(result))
     .catch(err => res.status(400).send(err));
 });
 
