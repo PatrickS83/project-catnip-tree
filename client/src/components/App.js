@@ -8,6 +8,7 @@ import Layout from './Layout';
 import Landing from './Landing';
 import PrivateRoute from './PrivateRoute';
 import CreatePost from './CreatePost';
+import ViewPost from './ViewPost';
 
 class App extends Component {
   static propTypes = {
@@ -24,6 +25,7 @@ class App extends Component {
       <Router>
         <Layout>
           <Route exact path="/" component={Landing} />
+          <Route path="/viewpost/:id" component={ViewPost} />
           <Switch>
             <PrivateRoute path="/posts/createPost" component={CreatePost} />
           </Switch>
