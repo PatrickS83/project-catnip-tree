@@ -1,4 +1,11 @@
-import { GET_POSTS, CREATE_POST, VIEW_POST, POST_LOADING } from '../actions/types';
+import {
+  GET_POSTS,
+  CREATE_POST,
+  VIEW_POST,
+  POST_LOADING,
+  LIKE_POST,
+  DISLIKE_POST
+} from '../actions/types';
 
 const initialState = {
   posts: [],
@@ -29,6 +36,26 @@ export default function(state = initialState, action) {
         ...state,
         loading: true
       };
+    case LIKE_POST: {
+      const posts = [...state.posts];
+      const index = posts.findIndex(post => post._id === action.payload[0]._id);
+      posts[index] = action.payload[0];
+      return {
+        ...state,
+        posts,
+        loading: true
+      };
+    }
+    case DISLIKE_POST: {
+      const posts = [...state.posts];
+      const index = posts.findIndex(post => post._id === action.payload[0]._id);
+      posts[index] = action.payload[0];
+      return {
+        ...state,
+        posts,
+        loading: true
+      };
+    }
     default:
       return state;
   }

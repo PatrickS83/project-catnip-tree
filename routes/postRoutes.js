@@ -57,7 +57,7 @@ router.post('/', requireAuth, (req, res) => {
 // @access  Protected
 router.post('/like/:id', requireAuth, async (req, res) => {
   const user = await User.findById(req.user.id);
-  const post = await Post.findById(req.params.id);
+  const post = await Post.findById(req.params.id).populate('creator');
   const alreadyLiked = user.liked.find(postID => postID === post.id);
   const alreadyDisliked = user.disliked.find(postID => postID === post.id);
 
@@ -80,7 +80,7 @@ router.post('/like/:id', requireAuth, async (req, res) => {
 // @access  Protected
 router.post('/dislike/:id', requireAuth, async (req, res) => {
   const user = await User.findById(req.user.id);
-  const post = await Post.findById(req.params.id);
+  const post = await Post.findById(req.params.id).populate('creator');
   const alreadyLiked = user.liked.find(postID => postID === post.id);
   const alreadyDisliked = user.disliked.find(postID => postID === post.id);
 
