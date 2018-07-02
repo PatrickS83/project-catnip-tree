@@ -37,6 +37,7 @@ class Landing extends Component {
                 likes={post.likes}
                 dislikes={post.dislikes}
                 author={post.creator.nick}
+                date={post.created}
                 id={post._id}
               />
             ))

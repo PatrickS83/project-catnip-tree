@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Item, Icon, Label } from 'semantic-ui-react';
+import moment from 'moment';
 import * as authActions from '../actions/authActions';
 import * as postActions from '../actions/postActions';
 import placeholderImage from './img/image.png';
@@ -54,7 +55,7 @@ class PostItem extends Component {
   };
 
   render() {
-    const { id, author, subject, content, likes, dislikes, setPostLoading } = this.props;
+    const { id, author, subject, content, likes, dislikes, setPostLoading, date } = this.props;
     const { liked, disliked } = this.state;
 
     return (
@@ -68,7 +69,9 @@ class PostItem extends Component {
             </Link>
           </Item.Header>
 
-          <Item.Meta>by {author}</Item.Meta>
+          <Item.Meta>
+            by {author} --- Posted {moment(date).fromNow()}
+          </Item.Meta>
           <Item.Description>{content}</Item.Description>
           <Item.Extra>
             <Label as="a" onClick={this.handleLike} style={{ border: '1px solid black' }}>

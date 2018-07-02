@@ -36,7 +36,7 @@ class ViewPost extends Component {
     } = this.props;
     if (!_id) return null;
     return (
-      <Container>
+      <Container style={{ minHeight: 400 }}>
         <Item.Group>
           {!loading ? (
             <PostItem
