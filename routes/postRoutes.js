@@ -17,7 +17,9 @@ router.get('/test', requireAuth, (req, res) => res.send('postroute works'));
 // @access  Public
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.find().populate('creator');
+    const posts = await Post.find()
+      .sort({ created: 'descending' })
+      .populate('creator');
     res.status(200).json(posts);
   } catch (err) {
     res.status(404).json(err);
