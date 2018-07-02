@@ -39,21 +39,21 @@ export default function(state = initialState, action) {
     case LIKE_POST: {
       const posts = [...state.posts];
       const index = posts.findIndex(post => post._id === action.payload[0]._id);
-      posts[index] = action.payload[0];
+      posts[index] = action.payload[0]; //eslint-disable-line
       return {
         ...state,
         posts,
-        loading: true
+        post: posts[index]
       };
     }
     case DISLIKE_POST: {
       const posts = [...state.posts];
       const index = posts.findIndex(post => post._id === action.payload[0]._id);
-      posts[index] = action.payload[0];
+      posts[index] = action.payload[0]; //eslint-disable-line
       return {
         ...state,
         posts,
-        loading: true
+        post: posts[index]
       };
     }
     default:
