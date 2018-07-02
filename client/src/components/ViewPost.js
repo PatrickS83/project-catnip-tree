@@ -14,7 +14,8 @@ class ViewPost extends Component {
       subject: PropTypes.string,
       content: PropTypes.string,
       likes: PropTypes.number,
-      dislikes: PropTypes.number
+      dislikes: PropTypes.number,
+      date: PropTypes.string
     }).isRequired,
     viewPost: PropTypes.func.isRequired,
     match: PropTypes.shape({
@@ -32,7 +33,7 @@ class ViewPost extends Component {
   render() {
     const {
       loading,
-      post: { _id, creator, subject, content, likes, dislikes }
+      post: { _id, creator, subject, content, likes, dislikes, created }
     } = this.props;
     if (!_id) return null;
     return (
@@ -45,6 +46,7 @@ class ViewPost extends Component {
               likes={likes}
               dislikes={dislikes}
               author={creator.nick}
+              date={created}
               id={_id}
             />
           ) : (
