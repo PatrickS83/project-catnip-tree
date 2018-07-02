@@ -16,6 +16,7 @@ class PostItem extends Component {
     content: PropTypes.string.isRequired,
     likes: PropTypes.number.isRequired,
     dislikes: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
     likePost: PropTypes.func.isRequired,
     dislikePost: PropTypes.func.isRequired,
     setPostLoading: PropTypes.func.isRequired,
@@ -70,7 +71,7 @@ class PostItem extends Component {
           </Item.Header>
 
           <Item.Meta>
-            by {author} --- Posted {moment(date).fromNow()}
+            Posted {moment(date).fromNow()} by {author}
           </Item.Meta>
           <Item.Description>{content}</Item.Description>
           <Item.Extra>
