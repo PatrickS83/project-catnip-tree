@@ -56,8 +56,10 @@ router.post('/', requireAuth, (req, res) => {
 // @desc    Like a post
 // @access  Protected
 router.post('/like/:id', requireAuth, async (req, res) => {
-  const user = await User.findById(req.user.id);
-  const post = await Post.findById(req.params.id).populate('creator');
+  const [user, post] = await Promise.all([
+    User.findById(req.user.id),
+    Post.findById(req.params.id).populate('creator')
+  ]);
   const alreadyLiked = user.liked.find(postID => postID === post.id);
   const alreadyDisliked = user.disliked.find(postID => postID === post.id);
 
@@ -79,8 +81,10 @@ router.post('/like/:id', requireAuth, async (req, res) => {
 // @desc    Dislike a post
 // @access  Protected
 router.post('/dislike/:id', requireAuth, async (req, res) => {
-  const user = await User.findById(req.user.id);
-  const post = await Post.findById(req.params.id).populate('creator');
+  const [user, post] = await Promise.all([
+    User.findById(req.user.id),
+    Post.findById(req.params.id).populate('creator')
+  ]);
   const alreadyLiked = user.liked.find(postID => postID === post.id);
   const alreadyDisliked = user.disliked.find(postID => postID === post.id);
 
