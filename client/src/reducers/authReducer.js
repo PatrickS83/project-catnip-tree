@@ -7,12 +7,14 @@ export default function(state = null, action) {
     case LIKE_POST:
       return {
         ...state,
+        // payload is an array with two objects: 0: post, 1: user
         liked: action.payload[1].liked,
         disliked: action.payload[1].disliked
       };
     case DISLIKE_POST:
       return {
         ...state,
+        // payload is an array with two objects: 0: post, 1: user
         liked: action.payload[1].liked,
         disliked: action.payload[1].disliked
       };
