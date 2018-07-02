@@ -38,22 +38,24 @@ export default function(state = initialState, action) {
       };
     case LIKE_POST: {
       const posts = [...state.posts];
-      const index = posts.findIndex(post => post._id === action.payload[0]._id);
-      posts[index] = action.payload[0]; //eslint-disable-line
+      const [post] = action.payload;
+      const index = posts.findIndex(postItem => postItem._id === post._id);
+      posts[index] = post;
       return {
         ...state,
         posts,
-        post: posts[index]
+        post
       };
     }
     case DISLIKE_POST: {
       const posts = [...state.posts];
-      const index = posts.findIndex(post => post._id === action.payload[0]._id);
-      posts[index] = action.payload[0]; //eslint-disable-line
+      const [post] = action.payload;
+      const index = posts.findIndex(postItem => postItem._id === post._id);
+      posts[index] = post;
       return {
         ...state,
         posts,
-        post: posts[index]
+        post
       };
     }
     default:
