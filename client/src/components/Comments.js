@@ -12,10 +12,13 @@ class Comments extends Component {
       _id: PropTypes.string,
       comments: PropTypes.arrayOf(PropTypes.object)
     }).isRequired,
-    auth: PropTypes.shape({
-      _id: PropTypes.string.isRequired,
-      nick: PropTypes.string.isRequired
-    }).isRequired
+    auth: PropTypes.oneOfType([
+      PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        nick: PropTypes.string.isRequired
+      }),
+      PropTypes.bool
+    ]).isRequired
   };
 
   state = { comment: '' };

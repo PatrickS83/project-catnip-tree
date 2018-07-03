@@ -27,8 +27,10 @@ const CommentItem = ({ user, created, text, nick }) => (
 CommentItem.propTypes = {
   user: PropTypes.string.isRequired,
   created: PropTypes.string.isRequired,
-  nick: PropTypes.string.isRequired,
+  nick: PropTypes.string,
   text: PropTypes.string.isRequired
 };
+
+CommentItem.defaultProps = { nick: '' };
 
 export default CommentItem;
