@@ -18,6 +18,22 @@ const postSchema = new Schema({
   },
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
+  comments: [
+    {
+      user: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+      },
+      text: {
+        type: String,
+        required: true
+      },
+      created: {
+        type: Date,
+        default: Date.now
+      }
+    }
+  ],
   created: { type: Date, default: Date.now }
 });
 
