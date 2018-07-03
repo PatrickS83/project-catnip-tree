@@ -104,4 +104,20 @@ router.post('/dislike/:id', requireAuth, async (req, res) => {
     .catch(err => res.status(400).send(err));
 });
 
+// @route   POST api/posts/:id/addComment
+// @desc    Creates a comment for a post
+// @access  Protected
+router.post('/:id/createComment', requireAuth, async (req, res) => {
+  try {
+    const post = await Post.findById(req.params.id).populate();
+    const comment = { user: req.body.userID, text: req.body.comment };
+    post.comments.unshift(comment);
+    await post.save();
+    console.log(post);
+    res.status(200).json(post);
+  } catch (err) {
+    res.status(500).json({ error: 'Could not create comment' });
+  }
+});
+
 module.exports = router;
