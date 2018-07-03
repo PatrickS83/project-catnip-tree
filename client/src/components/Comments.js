@@ -23,12 +23,23 @@ class Comments extends Component {
   handleChange = ({ currentTarget }) =>
     this.setState({ [currentTarget.name]: currentTarget.value });
 
-  render() {
+  handleSubmit = () => {
     const { comment } = this.state;
     const {
       createComment,
-      post: { _id: postID, comments },
-      auth: { _id: userID, nick }
+      post: { _id: postID },
+      auth: { _id: userID }
+    } = this.props;
+    // TODO: improve validation and show meaningful error message
+    if (!userID || !comment) return;
+    createComment(postID, { userID, comment });
+  };
+
+  render() {
+    const { comment } = this.state;
+    const {
+      post: { comments },
+      auth: { nick }
     } = this.props;
 
     return (
@@ -48,7 +59,7 @@ class Comments extends Component {
             ))
           : null}
 
-        <Form reply onSubmit={() => createComment(postID, { userID, comment })}>
+        <Form reply onSubmit={this.handleSubmit}>
           <Form.TextArea onChange={this.handleChange} name="comment" value={comment} />
           <Button content="Add Reply" labelPosition="left" icon="edit" color="orange" />
         </Form>
