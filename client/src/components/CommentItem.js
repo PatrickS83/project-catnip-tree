@@ -2,11 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Comment } from 'semantic-ui-react';
 import moment from 'moment';
-import avatar from './img/image.png';
 
 const CommentItem = ({ user, created, text, nick }) => (
   <Comment>
-    <Comment.Avatar src={avatar} />
+    <Comment.Avatar src={`https://api.adorable.io/avatars/100/${user}.png`} />
     <Comment.Content>
       {/* preventdefault because profiles are not implemented yet
       TODO: implement profiles */}
