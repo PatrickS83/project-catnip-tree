@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { Button, Container, Loader, Item } from 'semantic-ui-react';
+import { Button, Container, Loader, Item, Header, Divider, Segment } from 'semantic-ui-react';
 
 import * as postActions from '../actions/postActions';
 import PostItem from './PostItem';
@@ -23,10 +23,13 @@ class Landing extends Component {
 
     return (
       <Container>
-        <h1>Welcome to the Landing Page</h1>
-        <Link to="/posts/createPost">
-          <Button content="Create a post!" size="massive" color="orange" />
-        </Link>
+        <Segment textAlign="center" inverted color="teal">
+          <Header as="h1">Did you learn something today?</Header>
+          <Link to="/posts/createPost">
+            <Button content="Share it with others!" size="massive" color="orange" />
+          </Link>
+        </Segment>
+        <Divider />
         <Item.Group divided>
           {posts.length ? (
             posts.map(post => (
@@ -47,6 +50,7 @@ class Landing extends Component {
             </Loader>
           )}
         </Item.Group>
+        <Divider />
       </Container>
     );
   }

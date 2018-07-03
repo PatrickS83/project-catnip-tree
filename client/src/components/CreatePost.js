@@ -47,9 +47,9 @@ class CreatePost extends Component {
     return (
       <Container>
         <Header as="h1" textAlign="center">
-          Create a new Post
+          Share what you have learned!
         </Header>
-        <Segment inverted raised color="orange">
+        <Segment inverted raised color="teal">
           <Form
             inverted
             loading={loading}
@@ -78,7 +78,7 @@ class CreatePost extends Component {
               placeholder="Today I learned ..."
               onChange={this.handleChange}
             />
-            <Form.Button content="Create Post" disabled={success} color="blue" size="large" />
+            <Form.Button content="Create Post" disabled={success} color="orange" size="large" />
           </Form>
         </Segment>
       </Container>

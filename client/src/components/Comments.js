@@ -59,7 +59,7 @@ class Comments extends Component {
             ))
           : null}
 
-        <Form reply onSubmit={this.handleSubmit}>
+        <Form reply onSubmit={this.handleSubmit} style={{ paddingBottom: '2em' }}>
           <Form.TextArea onChange={this.handleChange} name="comment" value={comment} />
           <Button content="Add Reply" labelPosition="left" icon="edit" color="orange" />
         </Form>

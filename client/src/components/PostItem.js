@@ -6,7 +6,7 @@ import { Item, Icon, Label } from 'semantic-ui-react';
 import moment from 'moment';
 import * as authActions from '../actions/authActions';
 import * as postActions from '../actions/postActions';
-import placeholderImage from './img/image.png';
+// import placeholderImage from './img/image.png';
 
 class PostItem extends Component {
   static propTypes = {
@@ -58,10 +58,12 @@ class PostItem extends Component {
   render() {
     const { id, author, subject, content, likes, dislikes, setPostLoading, date } = this.props;
     const { liked, disliked } = this.state;
+    const likedColor = liked ? 'blue' : 'black';
+    const dislikedColor = disliked ? 'red' : 'black';
 
     return (
       <Item id={id}>
-        <Item.Image size="small" src={placeholderImage} />
+        <Item.Image size="small" src={`https://api.adorable.io/avatars/100/${id}.png`} />
 
         <Item.Content>
           <Item.Header>
@@ -75,12 +77,16 @@ class PostItem extends Component {
           </Item.Meta>
           <Item.Description>{content}</Item.Description>
           <Item.Extra>
-            <Label as="a" onClick={this.handleLike} style={{ border: '1px solid black' }}>
-              <Icon name="thumbs up outline" color={liked ? 'blue' : 'black'} />
+            <Label as="a" onClick={this.handleLike} style={{ border: `1px solid ${likedColor}` }}>
+              <Icon name="thumbs up outline" size="large" color={likedColor} />
               {likes}
             </Label>
-            <Label as="a" onClick={this.handledisLike} style={{ border: '1px solid black' }}>
-              <Icon name="thumbs down outline" color={disliked ? 'red' : 'black'} />
+            <Label
+              as="a"
+              onClick={this.handledisLike}
+              style={{ border: `1px solid ${dislikedColor}` }}
+            >
+              <Icon name="thumbs down outline" size="large" color={dislikedColor} />
               {dislikes}
             </Label>
           </Item.Extra>

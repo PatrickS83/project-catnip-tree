@@ -39,8 +39,8 @@ class ViewPost extends Component {
     if (!_id) return null;
     return (
       <Container style={{ minHeight: 400 }}>
-        <Item.Group>
-          {!loading ? (
+        {!loading ? (
+          <Item.Group>
             <PostItem
               subject={subject}
               content={content}
@@ -50,13 +50,15 @@ class ViewPost extends Component {
               date={created}
               id={_id}
             />
-          ) : (
+            <Comments />
+          </Item.Group>
+        ) : (
+          <div style={{ minHeight: 400 }}>
             <Loader active inline="centered" size="massive">
               Loading Post ...
             </Loader>
-          )}
-        </Item.Group>
-        <Comments/>
+          </div>
+        )}
       </Container>
     );
   }

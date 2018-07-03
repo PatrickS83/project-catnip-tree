@@ -5,6 +5,7 @@ import moment from 'moment';
 
 const CommentItem = ({ user, created, text, nick }) => (
   <Comment>
+    {/* TODO: allow users to choose avatars */}
     <Comment.Avatar src={`https://api.adorable.io/avatars/100/${user}.png`} />
     <Comment.Content>
       {/* preventdefault because profiles are not implemented yet
