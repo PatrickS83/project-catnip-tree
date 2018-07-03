@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Container, Item, Loader } from 'semantic-ui-react';
 import PostItem from './PostItem';
+import Comments from './Comments';
 import * as postActions from '../actions/postActions';
 
 class ViewPost extends Component {
@@ -55,6 +56,7 @@ class ViewPost extends Component {
             </Loader>
           )}
         </Item.Group>
+        <Comments/>
       </Container>
     );
   }
