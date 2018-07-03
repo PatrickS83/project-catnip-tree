@@ -4,7 +4,8 @@ import {
   VIEW_POST,
   POST_LOADING,
   LIKE_POST,
-  DISLIKE_POST
+  DISLIKE_POST,
+  CREATE_COMMENT
 } from '../actions/types';
 
 const initialState = {
@@ -24,6 +25,11 @@ export default function(state = initialState, action) {
       return {
         ...state
         // posts: [action.payload, ...state.posts]
+      };
+    case CREATE_COMMENT:
+      return {
+        ...state,
+        post: action.payload
       };
     case VIEW_POST:
       return {

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { GET_POSTS, CREATE_POST, VIEW_POST, POST_LOADING } from './types';
+import { GET_POSTS, CREATE_POST, VIEW_POST, POST_LOADING, CREATE_COMMENT } from './types';
 
 export const getPosts = () => async dispatch => {
   try {
@@ -16,6 +16,15 @@ export const createPost = formData => async dispatch => {
     dispatch({ type: CREATE_POST, payload: res.data });
   } catch (err) {
     dispatch({ type: CREATE_POST, payload: null });
+  }
+};
+
+export const createComment = (id, formData) => async dispatch => {
+  try {
+    const res = await axios.post(`/api/posts/${id}/createComment`, formData);
+    dispatch({ type: CREATE_COMMENT, payload: res.data });
+  } catch (err) {
+    dispatch({ type: CREATE_COMMENT, payload: null });
   }
 };
 
