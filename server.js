@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const cookieSession = require('cookie-session');
+const { notFound, errorHandler } = require('./services/errorHandlers');
 
 require('dotenv').config();
 
@@ -45,6 +46,10 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
   });
 }
+
+// error handling
+app.use(notFound);
+app.use(errorHandler);
 
 // Server init
 const PORT = process.env.PORT || 5000;
