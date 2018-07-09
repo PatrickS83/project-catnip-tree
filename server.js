@@ -36,6 +36,16 @@ app.use(passport.session());
 app.use('/auth', authRoutes);
 app.use('/api/posts', postRoutes);
 
+// deployment config
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+
+  const path = require('path');
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
+
 // Server init
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server listening to port ${PORT}`));
