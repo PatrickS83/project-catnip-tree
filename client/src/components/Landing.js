@@ -42,6 +42,7 @@ class Landing extends Component {
                 author={post.creator.nick}
                 date={post.created}
                 id={post._id}
+                comments={post.comments.length}
               />
             ))
           ) : (

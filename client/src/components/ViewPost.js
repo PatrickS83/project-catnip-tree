@@ -34,7 +34,7 @@ class ViewPost extends Component {
   render() {
     const {
       loading,
-      post: { _id, creator, subject, content, likes, dislikes, created }
+      post: { _id, creator, subject, content, likes, dislikes, created, comments }
     } = this.props;
     if (!_id) return null;
     return (
@@ -49,6 +49,7 @@ class ViewPost extends Component {
               author={creator.nick}
               date={created}
               id={_id}
+              comments={comments.length}
             />
             <Comments />
           </Item.Group>

@@ -20,6 +20,7 @@ class PostItem extends Component {
     likePost: PropTypes.func.isRequired,
     dislikePost: PropTypes.func.isRequired,
     setPostLoading: PropTypes.func.isRequired,
+    comments: PropTypes.number.isRequired,
     auth: PropTypes.oneOfType([
       PropTypes.bool,
       PropTypes.shape({
@@ -55,8 +56,24 @@ class PostItem extends Component {
     this.setState({ disliked: !disliked, liked: false });
   };
 
+  renderCommentInfo = (amount = 0) => {
+    if (amount === 0) return 'no comments yet';
+    if (amount === 1) return '1 comment';
+    return `${amount} comments`;
+  };
+
   render() {
-    const { id, author, subject, content, likes, dislikes, setPostLoading, date } = this.props;
+    const {
+      id,
+      author,
+      subject,
+      content,
+      likes,
+      dislikes,
+      setPostLoading,
+      date,
+      comments
+    } = this.props;
     const { liked, disliked } = this.state;
     const likedColor = liked ? 'blue' : 'black';
     const dislikedColor = disliked ? 'red' : 'black';
@@ -90,6 +107,9 @@ class PostItem extends Component {
               {dislikes}
             </Label>
           </Item.Extra>
+          <Link to={`/viewpost/${id}`} onClick={setPostLoading}>
+            {this.renderCommentInfo(comments)}
+          </Link>
         </Item.Content>
       </Item>
     );
