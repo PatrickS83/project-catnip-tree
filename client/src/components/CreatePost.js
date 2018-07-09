@@ -15,7 +15,7 @@ class CreatePost extends Component {
   // TODO: More checks and better error messages
   validate = ({ subject, content }) => {
     let error = false;
-    if (!subject || !content) error = true;
+    if (!subject || !content || subject.length > 200) error = true;
     this.setState({ error });
     return error;
   };
