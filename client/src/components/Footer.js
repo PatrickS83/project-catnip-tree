@@ -10,23 +10,19 @@ const Footer = () => (
             <Header inverted as="h4" content="About" />
             <List link inverted>
               <List.Item as="a">Impressum</List.Item>
-              <List.Item as="a">Contact Us</List.Item>
+              <List.Item as="a" href="https://github.com/PatrickS83/project-catnip-tree">
+                Github Repo
+              </List.Item>
             </List>
           </Grid.Column>
-          <Grid.Column width={3}>
-            <Header inverted as="h4" content="Services" />
-            <List link inverted>
-              <List.Item as="a">Placeholder 1</List.Item>
-              <List.Item as="a">Placeholder 2</List.Item>
-            </List>
-          </Grid.Column>
-          <Grid.Column width={7}>
+          <Grid.Column width={10}>
             <Header as="h4" inverted>
-              Today I Learned
+              Today I Learned - Messageboard
             </Header>
             <p>
-              Small messageboard learning-project to familiarize myself with authentification,
-              Node.js and React/Redux
+              Small messageboard learning-project to familiarize myself with the MERN-Stack
+              (MongoDB, Express, React/Redux, NodeJS) and authentification. Goal is to build an
+              easy-to-use UI/UX for a pre-school class of a teacher friend of mine.
             </p>
           </Grid.Column>
         </Grid.Row>
