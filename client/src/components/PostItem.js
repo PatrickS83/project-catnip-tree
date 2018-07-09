@@ -32,6 +32,7 @@ class PostItem extends Component {
 
   state = { liked: false, disliked: false };
 
+  // check if user has liked or disliked a post and set the state accordingly
   componentDidMount() {
     const { id, auth } = this.props;
     if (!auth) return;
@@ -56,6 +57,8 @@ class PostItem extends Component {
     this.setState({ disliked: !disliked, liked: false });
   };
 
+  // display the correct comment description depending on the amount of comments
+  // number ---> string
   renderCommentInfo = (amount = 0) => {
     if (amount === 0) return 'no comments yet';
     if (amount === 1) return '1 comment';
