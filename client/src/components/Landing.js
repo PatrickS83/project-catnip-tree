@@ -18,6 +18,16 @@ class Landing extends Component {
     getPosts();
   }
 
+  // Limits string to a certain length specified by the charCount parameter
+  // String ---> String
+  truncateString = (str, charCount = 280) => {
+    if (str.length <= charCount) return str;
+    return `${str
+      .split('')
+      .slice(0, charCount)
+      .join('')}...`;
+  };
+
   render() {
     const { posts } = this.props;
 
@@ -36,7 +46,7 @@ class Landing extends Component {
               <PostItem
                 key={post._id}
                 subject={post.subject}
-                content={post.content}
+                content={this.truncateString(post.content)}
                 likes={post.likes}
                 dislikes={post.dislikes}
                 author={post.creator.nick}
