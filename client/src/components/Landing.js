@@ -28,9 +28,30 @@ class Landing extends Component {
       .join('')}...`;
   };
 
-  render() {
+  renderPosts = () => {
     const { posts } = this.props;
+    if (!posts.length)
+      return (
+        <Loader active inline="centered" size="massive">
+          Loading Posts ...
+        </Loader>
+      );
+    return posts.map(post => (
+      <PostItem
+        key={post._id}
+        subject={post.subject}
+        content={this.truncateString(post.content)}
+        likes={post.likes}
+        dislikes={post.dislikes}
+        author={post.creator.nick}
+        date={post.created}
+        id={post._id}
+        comments={post.comments.length}
+      />
+    ));
+  };
 
+  render() {
     return (
       <Container>
         <Segment textAlign="center" inverted color="teal">
@@ -40,27 +61,7 @@ class Landing extends Component {
           </Link>
         </Segment>
         <Divider />
-        <Item.Group divided>
-          {posts.length ? (
-            posts.map(post => (
-              <PostItem
-                key={post._id}
-                subject={post.subject}
-                content={this.truncateString(post.content)}
-                likes={post.likes}
-                dislikes={post.dislikes}
-                author={post.creator.nick}
-                date={post.created}
-                id={post._id}
-                comments={post.comments.length}
-              />
-            ))
-          ) : (
-            <Loader active inline="centered" size="massive">
-              Loading Posts ...
-            </Loader>
-          )}
-        </Item.Group>
+        <Item.Group divided>{this.renderPosts()}</Item.Group>
         <Divider />
       </Container>
     );
