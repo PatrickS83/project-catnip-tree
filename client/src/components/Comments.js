@@ -21,6 +21,7 @@ class Comments extends Component {
     ]).isRequired
   };
 
+  // comment: the text the user typed in the textarea saved as a String
   state = { comment: '' };
 
   handleChange = ({ currentTarget }) =>
@@ -38,29 +39,35 @@ class Comments extends Component {
     createComment(postID, { userID, comment });
   };
 
-  render() {
-    const { comment } = this.state;
+  // creates array of CommentItems if a post has comments
+  renderComments() {
     const {
       post: { comments },
       auth: { nick }
     } = this.props;
+
+    if (!comments.length) return <p>No comments yet</p>;
+    return comments.map(item => (
+      <CommentItem
+        key={item._id}
+        user={item.user}
+        created={item.created}
+        nick={nick}
+        text={item.text}
+      />
+    ));
+  }
+
+  render() {
+    const { comment } = this.state;
 
     return (
       <Comment.Group>
         <Header as="h3" dividing>
           Comments
         </Header>
-        {comments.length
-          ? comments.map(item => (
-              <CommentItem
-                key={item._id}
-                user={item.user}
-                created={item.created}
-                nick={nick}
-                text={item.text}
-              />
-            ))
-          : null}
+
+        {this.renderComments()}
 
         <Form reply onSubmit={this.handleSubmit} style={{ paddingBottom: '2em' }}>
           <Form.TextArea onChange={this.handleChange} name="comment" value={comment} />
