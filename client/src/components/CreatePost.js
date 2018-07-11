@@ -26,6 +26,8 @@ class CreatePost extends Component {
     this.setState({ form });
   };
 
+  // on success: save post in database and redirect to root page
+  // on failure: return without saving post and display error msg
   handleSubmit = async () => {
     this.setState({ loading: true });
     const { form } = this.state;

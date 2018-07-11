@@ -20,6 +20,9 @@ class Header extends Component {
 
   static defaultProps = { auth: null };
 
+  // render Sign In button when user is not properly authorized
+  // render log out button if user is properly authorized
+  // render nothing while authorization check is still pending
   renderAuthButton() {
     const { auth } = this.props;
     if (auth) {

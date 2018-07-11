@@ -6,7 +6,6 @@ import { Item, Icon, Label } from 'semantic-ui-react';
 import moment from 'moment';
 import * as authActions from '../actions/authActions';
 import * as postActions from '../actions/postActions';
-// import placeholderImage from './img/image.png';
 
 class PostItem extends Component {
   static propTypes = {
