@@ -113,7 +113,6 @@ router.post('/:id/createComment', requireAuth, async (req, res) => {
     const comment = { user: req.body.userID, text: req.body.comment };
     post.comments.unshift(comment);
     await post.save();
-    console.log(post);
     res.status(200).json(post);
   } catch (err) {
     res.status(500).json({ error: 'Could not create comment' });
